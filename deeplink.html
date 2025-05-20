@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Uygulama Yönlendiriliyor...</title>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+
+      if (token) {
+        const appLink = `studybuddy://resetPassword?token=${token}`;
+        window.location.href = appLink;
+
+        setTimeout(() => {
+          document.body.innerHTML += `
+            <p style="color:red; margin-top: 20px;">
+              Uygulama açılmıyorsa yüklü olduğundan emin olun ve tekrar deneyin.
+            </p>`;
+        }, 3000);
+      } else {
+        document.body.innerHTML = "<p>Token bulunamadı.</p>";
+      }
+    })();
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <p>Uygulama açılıyor, lütfen bekleyin...</p>
+</body>
+</html>
