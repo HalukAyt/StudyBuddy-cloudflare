@@ -2,33 +2,21 @@
 <html>
   <head>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <style>
-      html, body {
-        margin: 0;
-        height: 100%;
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .cf-turnstile {
-        transform: scale(1.8); /* 📏 Orta boy */
-        transform-origin: top center; /* 📌 Ortalar */
-      }
-    </style>
   </head>
   <body>
-    <div
-      class="cf-turnstile"
-      data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"
-      data-callback="onTurnstileSuccess"
-    ></div>
-
+    <form>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"></div>
+    </form>
     <script>
-      function onTurnstileSuccess(token) {
-        window.ReactNativeWebView?.postMessage(token);
-      }
+      window.onload = () => {
+        const interval = setInterval(() => {
+          const response = document.querySelector('iframe')?.contentWindow?.document.querySelector('[name="cf-turnstile-response"]')?.value;
+          if (response) {
+            window.ReactNativeWebView?.postMessage(response);
+            clearInterval(interval);
+          }
+        }, 100);
+      };
     </script>
   </body>
 </html>
