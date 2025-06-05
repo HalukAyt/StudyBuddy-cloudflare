@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cf-turnstile {
+        transform: scale(2.4);              /* 📏 Büyüklük */
+        transform-origin: top center;       /* 🎯 Ortaya hizalama */
+      }
+    </style>
   </head>
   <body>
-    <form>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"></div>
-    </form>
+    <div
+      class="cf-turnstile"
+      data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"
+      data-callback="onTurnstileSuccess"
+      data-theme="light"
+      data-refresh-expired="false"         <!-- ✅ Başarıdan sonra yeniden yükleme olmasın -->
+    ></div>
+
     <script>
-      window.onload = () => {
-        const interval = setInterval(() => {
-          const response = document.querySelector('iframe')?.contentWindow?.document.querySelector('[name="cf-turnstile-response"]')?.value;
-          if (response) {
-            window.ReactNativeWebView?.postMessage(response);
-            clearInterval(interval);
-          }
-        }, 100);
-      };
+      function onTurnstileSuccess(token) {
+        window.ReactNativeWebView?.postMessage(token);
+      }
     </script>
   </body>
 </html>
