@@ -5,18 +5,16 @@
   </head>
   <body>
     <form>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"></div>
+      <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"
+        data-callback="onTurnstileSuccess"
+      ></div>
     </form>
     <script>
-      window.onload = () => {
-        const interval = setInterval(() => {
-          const response = document.querySelector('iframe')?.contentWindow?.document.querySelector('[name="cf-turnstile-response"]')?.value;
-          if (response) {
-            window.ReactNativeWebView?.postMessage(response);
-            clearInterval(interval);
-          }
-        }, 100);
-      };
+      function onTurnstileSuccess(token) {
+        window.ReactNativeWebView?.postMessage(token);
+      }
     </script>
   </body>
 </html>
