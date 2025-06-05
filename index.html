@@ -1,20 +1,15 @@
-<!DOCTYPE html>
+<!DOCTYPE html>Add commentMore actions
 <html>
   <head>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
-      html, body {
+      body {
         margin: 0;
-        height: 100%;
-        background-color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-
-      .cf-turnstile {
-        transform: scale(1.8); /* 📏 Orta boy */
-        transform-origin: top center; /* 📌 Ortalar */
+        height: 100vh;
+        background-color: white;
       }
     </style>
   </head>
@@ -28,7 +23,7 @@
     <script>
       function onTurnstileSuccess(token) {
         window.ReactNativeWebView?.postMessage(token);
-      }
+      }Add commentMore actions
     </script>
   </body>
 </html>
