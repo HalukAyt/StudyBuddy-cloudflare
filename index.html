@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="cf-turnstile"
+      data-sitekey="0x4AAAAAABgL7o3lvTiz2j_s"
+      data-callback="onTurnstileSuccess"
+    ></div>
+
+    <script>
+      function onTurnstileSuccess(token) {
+        window.ReactNativeWebView?.postMessage(token);
+      }
+    </script>
+  </body>
+</html>
