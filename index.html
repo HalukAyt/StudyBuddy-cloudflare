@@ -1,4 +1,4 @@
-<!DOCTYPE html>Add commentMore actions
+<!DOCTYPE html>
 <html>
   <head>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -10,6 +10,11 @@
         align-items: center;
         height: 100vh;
         background-color: white;
+      }
+
+      .cf-turnstile {
+        transform: scale(2.3); /* 🔍 Ölçeği büyüttük */
+        transform-origin: top left;
       }
     </style>
   </head>
@@ -23,7 +28,7 @@
     <script>
       function onTurnstileSuccess(token) {
         window.ReactNativeWebView?.postMessage(token);
-      }Add commentMore actions
+      }
     </script>
   </body>
 </html>
